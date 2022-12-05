@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Post Page</h1>
+    <hr>
+
+    <div>
+        <form action="{% url 'create' %}" method="post">
+            {% csrf_token %}
+            <input name="theme"></input>
+            <input name="description"></input>
+            <button type="submit" class="btn btn-success">Add Post</button>
+        </form>
+    </div>
+    <hr>
+    <div>
+        <ul>
+            {% for data in dataset %}
+            <li>
+                <h1>{{ data.theme }}</h1>
+                <p>{{ data.description}}</p>
+                <form action="" method="put">
+                    <button type="submit" class="btn btn-warning">Edit</button>
+                </form>
+                <form action="" method="delete">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% comment %} {% for  in  %}
+        <h1>theme</h1>
+        <p>description</p>
+    {% endfor %} {% endcomment %}
+{% endblock %}
